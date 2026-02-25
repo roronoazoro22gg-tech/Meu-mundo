@@ -200,6 +200,115 @@
       border-color: rgba(255,255,255,.22);
     }
 
+    /* ===== (5) MENSAGENS ESCONDIDAS ===== */
+    .secrets{
+      margin-top: 18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .secretsTop{
+      padding: 14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+    }
+    .secretsTitle{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing:.18px;
+    }
+    .secretsHint{
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+    .secretsGrid{
+      padding: 14px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 720px){
+      .secretsGrid{ grid-template-columns: 1fr; }
+    }
+    .secret{
+      text-align:left;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      padding: 14px 14px;
+      cursor:pointer;
+      color: rgba(255,255,255,.88);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .secret:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,79,163,.22);
+    }
+    .secret:active{ transform: scale(.99); }
+    .secretQ{
+      display:block;
+      font-size: 12px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      margin-bottom: 8px;
+    }
+    .secretA{
+      display:block;
+      font-size: 13.5px;
+      line-height: 1.65;
+      min-height: 3.2em;
+    }
+    .secret.revealed .secretQ{
+      color: rgba(255,255,255,.52);
+    }
+    .secret.revealed .secretA{
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-weight: 600;
+    }
+
+    /* ===== MINI PRESENTE (2) ===== */
+    .gift{
+      margin-top: 18px;
+      text-align:center;
+    }
+
+    #giftBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.9);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor:pointer;
+    }
+    #giftBtn:active{ transform: scale(.98); }
+
+    #giftBox{
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-weight:600;
+    }
+
     /* ===== CARTA DIGITANDO (COMEÇA AO APARECER) ===== */
     .letter{
       margin-top: 18px;
@@ -381,95 +490,11 @@
       color: rgba(255,255,255,.55);
       font-size: 12px;
     }
-
-    /* ===== (10) DETALHE FOFO ===== */
     .tiny{
       margin-top: 10px;
       font-size: 12px;
       color: rgba(255,255,255,.48);
       letter-spacing:.02em;
-    }
-
-    /* ===== (5) MENSAGENS ESCONDIDAS ===== */
-    .secrets{
-      margin-top: 18px;
-      border-radius: var(--r);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .secretsTop{
-      padding: 14px 14px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-    }
-    .secretsTitle{
-      margin:0;
-      font-family:"Playfair Display", serif;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing:.18px;
-    }
-    .secretsHint{
-      font-size: 12px;
-      color: rgba(255,255,255,.62);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 7px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    .secretsGrid{
-      padding: 14px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 720px){
-      .secretsGrid{ grid-template-columns: 1fr; }
-    }
-    .secret{
-      text-align:left;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
-      padding: 14px 14px;
-      cursor:pointer;
-      color: rgba(255,255,255,.88);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .secret:hover{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,79,163,.22);
-    }
-    .secret:active{ transform: scale(.99); }
-    .secretQ{
-      display:block;
-      font-size: 12px;
-      letter-spacing:.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.62);
-      margin-bottom: 8px;
-    }
-    .secretA{
-      display:block;
-      font-size: 13.5px;
-      line-height: 1.65;
-      min-height: 3.2em;
-    }
-    .secret.revealed .secretQ{
-      color: rgba(255,255,255,.52);
-    }
-    .secret.revealed .secretA{
-      background: linear-gradient(135deg,var(--pink),var(--pink2));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      font-weight: 600;
     }
 
     /* ===== TELA DE ENTRADA (ANIVERSÁRIO) ===== */
@@ -577,7 +602,7 @@
       </h2>
 
       <div class="introBtns">
-        <button class="introBtn primary" id="introEnter">Entrar no nosso álbum</button>
+        <button class="introBtn primary" id="introEnter">Entrar no nosso presente</button>
       </div>
     </div>
 
@@ -588,7 +613,7 @@
 
     <header>
       <div class="kicker">
-        <div class="label">nosso álbum</div>
+        <div class="label">presente para</div>
         <div class="counter" id="counter">carregando…</div>
       </div>
 
@@ -681,6 +706,12 @@
       </div>
     </section>
 
+    <!-- (2) MINI PRESENTE -->
+    <section class="gift" aria-label="Mini presente">
+      <button id="giftBtn">🎁 abrir</button>
+      <div id="giftBox" hidden>Vale um abraço apertado + beijo demorado 💗</div>
+    </section>
+
     <!-- CARTA DIGITANDO -->
     <section class="letter" id="letter">
       <div class="letterTop">
@@ -706,7 +737,7 @@
     <footer>
       <p class="love">Você é meu lar</p>
       <div class="sign">— Thiago</div>
-      <div class="tiny">feito por Thiago, pensando em Thayssa 🧸</div>
+      <div class="tiny" id="madeAt"></div>
     </footer>
 
   </div>
@@ -783,6 +814,16 @@
         }
       });
     });
+
+    // ===== (2) Mini presente 🎁 =====
+    const giftBtn = document.getElementById("giftBtn");
+    const giftBox = document.getElementById("giftBox");
+    if(giftBtn){
+      giftBtn.addEventListener("click", () => {
+        giftBox.hidden = !giftBox.hidden;
+        giftBtn.textContent = giftBox.hidden ? "🎁 abrir" : "🎁 fechado";
+      });
+    }
 
     // ===== CARTA DIGITANDO (SÓ COMEÇA QUANDO APARECER) =====
     const textoCarta =
@@ -943,6 +984,15 @@ Agora você estar dentro do meu coração, eu amo você com muita intensidade, l
           music.volume = on ? Math.min(music.volume, 0.55) : Math.min(0.85, Math.max(music.volume, 0.75));
         }catch(e){}
       });
+    }
+
+    // ===== Detalhe humano (10) — horário real =====
+    const madeAt = document.getElementById("madeAt");
+    if(madeAt){
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,"0");
+      const mm = String(now.getMinutes()).padStart(2,"0");
+      madeAt.textContent = `feito às ${hh}:${mm}, pensando em Thayssa 🧸`;
     }
 
     // ===== TELA DE ENTRADA (ANIVERSÁRIO) =====
