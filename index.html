@@ -101,7 +101,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px; /* ✅ corrigido */
+      gap:12px;
       border-bottom: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
     }
@@ -325,6 +325,42 @@
     }
     #musicBtn:active{ transform: scale(.98); }
 
+    /* ===== (6) BOTÃO MODO NOITE ===== */
+    #nightBtn{
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      z-index: 999;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: white;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+    #nightBtn:active{ transform: scale(.98); }
+
+    /* ===== (6) MODO NOITE ROMÂNTICO ===== */
+    body.night{
+      background:
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,79,163,.18), transparent 62%),
+        radial-gradient(900px 700px at 90% 15%, rgba(255,135,199,.12), transparent 58%),
+        linear-gradient(180deg, #02010a, #050316 55%, #02010a);
+    }
+    body.night .carouselWrap,
+    body.night .letter,
+    body.night .secrets{
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.045);
+    }
+    body.night .hint,
+    body.night .counter{
+      background: rgba(255,255,255,.06);
+    }
+
     footer{
       margin-top: 26px;
       padding-top: 22px;
@@ -345,10 +381,209 @@
       color: rgba(255,255,255,.55);
       font-size: 12px;
     }
+
+    /* ===== (10) DETALHE FOFO ===== */
+    .tiny{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.48);
+      letter-spacing:.02em;
+    }
+
+    /* ===== (5) MENSAGENS ESCONDIDAS ===== */
+    .secrets{
+      margin-top: 18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .secretsTop{
+      padding: 14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+    }
+    .secretsTitle{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing:.18px;
+    }
+    .secretsHint{
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+    .secretsGrid{
+      padding: 14px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 720px){
+      .secretsGrid{ grid-template-columns: 1fr; }
+    }
+    .secret{
+      text-align:left;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      padding: 14px 14px;
+      cursor:pointer;
+      color: rgba(255,255,255,.88);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .secret:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,79,163,.22);
+    }
+    .secret:active{ transform: scale(.99); }
+    .secretQ{
+      display:block;
+      font-size: 12px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      margin-bottom: 8px;
+    }
+    .secretA{
+      display:block;
+      font-size: 13.5px;
+      line-height: 1.65;
+      min-height: 3.2em;
+    }
+    .secret.revealed .secretQ{
+      color: rgba(255,255,255,.52);
+    }
+    .secret.revealed .secretA{
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-weight: 600;
+    }
+
+    /* ===== TELA DE ENTRADA (ANIVERSÁRIO) ===== */
+    .intro{
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      background:
+        radial-gradient(900px 600px at 10% 10%, rgba(255,79,163,.20), transparent 60%),
+        radial-gradient(900px 650px at 90% 20%, rgba(255,135,199,.12), transparent 55%),
+        rgba(0,0,0,.78);
+      backdrop-filter: blur(10px);
+    }
+
+    .introCard{
+      width: min(560px, 92vw);
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10,8,16,.58);
+      box-shadow: var(--shadow);
+      padding: 18px 16px 16px;
+      text-align: center;
+      position: relative;
+      overflow:hidden;
+    }
+
+    .introTag{
+      display:inline-block;
+      font-size: 12px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .introTitle{
+      margin: 14px 0 8px;
+      font-family:"Playfair Display", serif;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing:.2px;
+    }
+
+    .introPink{
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-weight: 700;
+    }
+
+    .introBtns{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    .introBtn{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-size: 12.8px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .introBtn:active{ transform: scale(.98); }
+    .introBtn:hover{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+    }
+    .introBtn.primary{
+      border-color: rgba(255,79,163,.35);
+      background: linear-gradient(135deg, rgba(255,79,163,.22), rgba(255,255,255,.06));
+    }
+
+    #introCanvas{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events:none;
+      opacity: .9;
+    }
   </style>
 </head>
 
 <body>
+  <!-- TELA DE ENTRADA (ANIVERSÁRIO) -->
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Tela de entrada">
+    <div class="introCard">
+      <div class="introTag">✨ hoje é especial</div>
+
+      <h2 class="introTitle">
+        Feliz <span class="introPink">2 meses</span> meu amor
+      </h2>
+
+      <div class="introBtns">
+        <button class="introBtn primary" id="introEnter">Entrar no nosso álbum</button>
+      </div>
+    </div>
+
+    <canvas id="introCanvas" aria-hidden="true"></canvas>
+  </div>
+
   <div class="wrap">
 
     <header>
@@ -421,6 +656,31 @@
       </div>
     </section>
 
+    <!-- (5) MENSAGENS ESCONDIDAS -->
+    <section class="secrets" aria-label="Mensagens escondidas">
+      <div class="secretsTop">
+        <h2 class="secretsTitle">Segredinhos</h2>
+        <div class="secretsHint">toque para revelar ✨</div>
+      </div>
+
+      <div class="secretsGrid">
+        <button class="secret" type="button" data-msg="Você não é só meu amor… você é minha paz.">
+          <span class="secretQ">Toque aqui</span>
+          <span class="secretA"></span>
+        </button>
+
+        <button class="secret" type="button" data-msg="Se eu pudesse voltar no tempo, eu te escolheria mais cedo.">
+          <span class="secretQ">Toque aqui</span>
+          <span class="secretA"></span>
+        </button>
+
+        <button class="secret" type="button" data-msg="Feliz 2 meses, minha princesa. Isso é só o começo. 💗">
+          <span class="secretQ">Toque aqui</span>
+          <span class="secretA"></span>
+        </button>
+      </div>
+    </section>
+
     <!-- CARTA DIGITANDO -->
     <section class="letter" id="letter">
       <div class="letterTop">
@@ -446,6 +706,7 @@
     <footer>
       <p class="love">Você é meu lar</p>
       <div class="sign">— Thiago</div>
+      <div class="tiny">feito por Thiago, pensando em Thayssa 🧸</div>
     </footer>
 
   </div>
@@ -456,6 +717,7 @@
   </audio>
 
   <button id="musicBtn">🔊 Tocar</button>
+  <button id="nightBtn" title="Modo noite">🌙 Noite</button>
 
   <script>
     // >>> TROQUE A DATA AQUI se precisar (formato: YYYY-MM-DD)
@@ -502,6 +764,25 @@
     carousel.addEventListener("scroll", () => {
       window.requestAnimationFrame(updateDots);
     }, { passive: true });
+
+    // ===== (5) Mensagens escondidas =====
+    document.querySelectorAll(".secret").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const msg = btn.getAttribute("data-msg") || "";
+        const a = btn.querySelector(".secretA");
+        const q = btn.querySelector(".secretQ");
+
+        if(!btn.classList.contains("revealed")){
+          btn.classList.add("revealed");
+          a.textContent = msg;
+          q.textContent = "Segredo revelado";
+        }else{
+          btn.classList.remove("revealed");
+          a.textContent = "";
+          q.textContent = "Toque aqui";
+        }
+      });
+    });
 
     // ===== CARTA DIGITANDO (SÓ COMEÇA QUANDO APARECER) =====
     const textoCarta =
@@ -577,7 +858,6 @@ Agora você estar dentro do meu coração, eu amo você com muita intensidade, l
     const TARGET_VOL = 0.85;
 
     let musicWanted = false;
-    let musicStarted = false;
     let fading = null;
 
     function fadeIn(){
@@ -595,7 +875,6 @@ Agora você estar dentro do meu coração, eu amo você com muita intensidade, l
     async function tryPlayMusic(){
       try{
         await music.play();
-        musicStarted = true;
         musicBtn.textContent = "⏸ Pausar";
         fadeIn();
         return true;
@@ -650,6 +929,90 @@ Agora você estar dentro do meu coração, eu amo você com muita intensidade, l
     }, { threshold: 0.35 });
 
     observer.observe(elLetter);
+
+    // ===== (6) Modo noite romântico =====
+    const nightBtn = document.getElementById("nightBtn");
+    if(nightBtn){
+      const saved = localStorage.getItem("nightMode");
+      if(saved === "1") document.body.classList.add("night");
+
+      nightBtn.addEventListener("click", () => {
+        const on = document.body.classList.toggle("night");
+        localStorage.setItem("nightMode", on ? "1" : "0");
+        try{
+          music.volume = on ? Math.min(music.volume, 0.55) : Math.min(0.85, Math.max(music.volume, 0.75));
+        }catch(e){}
+      });
+    }
+
+    // ===== TELA DE ENTRADA (ANIVERSÁRIO) =====
+    const intro = document.getElementById("intro");
+    const introEnter = document.getElementById("introEnter");
+
+    function closeIntro(){
+      if(!intro) return;
+      intro.style.display = "none";
+      document.body.style.overflow = "";
+      window.scrollTo(0, 0);
+    }
+
+    if(intro){
+      document.body.style.overflow = "hidden";
+    }
+
+    if(introEnter){
+      introEnter.addEventListener("click", () => {
+        closeIntro();
+        // pequeno “unlock” de áudio (ajuda em alguns celulares)
+        try{ music.play().then(()=>music.pause()).catch(()=>{}); }catch(e){}
+      });
+    }
+
+    // Brilhinhos leves (só na intro)
+    const canvas = document.getElementById("introCanvas");
+    if(canvas){
+      const ctx = canvas.getContext("2d");
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      let w, h, stars;
+
+      function resize(){
+        w = canvas.clientWidth;
+        h = canvas.clientHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+
+        stars = Array.from({length: 40}, () => ({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          r: 0.8 + Math.random()*1.6,
+          a: 0.25 + Math.random()*0.45,
+          s: 0.15 + Math.random()*0.45
+        }));
+      }
+
+      function tick(){
+        if(!intro || intro.style.display === "none") return;
+        ctx.clearRect(0,0,w,h);
+
+        for(const p of stars){
+          p.y -= p.s;
+          if(p.y < -10){ p.y = h + 10; p.x = Math.random()*w; }
+          ctx.beginPath();
+          ctx.globalAlpha = p.a;
+          ctx.fillStyle = "white";
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+      tick();
+    }
   </script>
 </body>
 </html>
