@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thayssa — Nosso Álbum</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070510;
+      --txt:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --stroke:rgba(255,255,255,.12);
+      --pink:#ff4fa3;
+      --pink2:#ff87c7;
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --r: 22px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--txt);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1100px 700px at 10% 0%, rgba(255,79,163,.12), transparent 60%),
+        radial-gradient(900px 700px at 90% 15%, rgba(255,135,199,.08), transparent 55%),
+        linear-gradient(180deg, #04030a, #070515 55%, #04030a);
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 34px 16px 74px;
+    }
+
+    header{
+      padding: 10px 2px 26px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 18px;
+    }
+
+    .kicker{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .label{
+      display:inline-block;
+      font-size: 12.5px;
+      color: var(--muted);
+      letter-spacing:.18em;
+      text-transform: uppercase;
+    }
+
+    .counter{
+      font-size: 12.5px;
+      color: rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+
+    h1{
+      margin: 12px 0 0;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      font-size: 36px;
+      letter-spacing:.25px;
+      line-height:1.08;
+    }
+
+    .pink{
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* ===== CARROSSEL HORIZONTAL ===== */
+    .carouselWrap{
+      margin-top: 18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .carouselHeader{
+      padding: 14px 14px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+    }
+
+    .carouselTitle{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing:.18px;
+    }
+
+    .hint{
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+
+    .carousel{
+      display:flex;
+      gap: 14px;
+      padding: 14px;
+      overflow-x:auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar{ display:none; }
+
+    .slide{
+      flex: 0 0 82%;
+      max-width: 520px;
+      scroll-snap-align: start;
+      border-radius: calc(var(--r) - 4px);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 16px 55px rgba(0,0,0,.45);
+    }
+    @media (min-width: 820px){
+      .slide{ flex-basis: 55%; }
+    }
+    @media (max-width: 420px){
+      .slide{ flex-basis: 92%; }
+    }
+
+    .img{
+      height: 340px;
+      background: rgba(255,255,255,.05);
+    }
+    @media (max-width:560px){
+      .img{ height: 280px; }
+    }
+    .img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .txt{
+      padding: 14px 14px 16px;
+      background: rgba(0,0,0,.18);
+    }
+    .title{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: 18px;
+      font-weight:600;
+      letter-spacing:.18px;
+      /* se quiser centralizar, descomenta:
+      text-align:center;
+      */
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      padding: 10px 14px 14px;
+      background: rgba(0,0,0,.14);
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .dot{
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.14);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .dot.active{
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      transform: scale(1.25);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    /* ===== CARTA DIGITANDO (COMEÇA AO APARECER) ===== */
+    .letter{
+      margin-top: 18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .letterTop{
+      padding: 16px 16px 14px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      flex-wrap:wrap;
+    }
+
+    .letterLabel{
+      display:inline-block;
+      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .letterTitle{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing:.18px;
+    }
+
+    .letterSub{
+      margin:6px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: 13.5px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+
+    .letterBtns{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+    }
+    .btn:active{ transform: scale(.98); }
+    .btn:hover{ background: rgba(255,255,255,.09); }
+
+    .btn.ghost{
+      background: transparent;
+      color: rgba(255,255,255,.72);
+    }
+
+    .btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+    .paper{
+      padding: 16px;
+      background: rgba(0,0,0,.12);
+    }
+
+    .type{
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(255,255,255,.88);
+    }
+
+    .caret{
+      display:inline-block;
+      width: 9px;
+      height: 16px;
+      margin-left: 2px;
+      vertical-align: -3px;
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      border-radius: 2px;
+      animation: blink .9s steps(1,end) infinite;
+    }
+
+    @keyframes blink{
+      50%{ opacity: 0; }
+    }
+
+    .readyNote{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.60);
+    }
+
+    /* ===== BOTÃO DE MÚSICA ===== */
+    #musicBtn{
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 999;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: white;
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      display: none;
+    }
+    #musicBtn:active{ transform: scale(.98); }
+
+    footer{
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      text-align:center;
+    }
+    .love{
+      margin: 0;
+      font-family:"Playfair Display", serif;
+      font-size: 34px;
+      letter-spacing:.25px;
+      background: linear-gradient(135deg,var(--pink),var(--pink2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .sign{
+      margin-top: 8px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="kicker">
+        <div class="label">nosso álbum</div>
+        <div class="counter" id="counter">carregando…</div>
+      </div>
+
+      <h1><span class="pink">Thayssa</span> <span class="pink">Grieger</span></h1>
+    </header>
+
+    <!-- CARROSSEL -->
+    <section class="carouselWrap" aria-label="Galeria de momentos">
+      <div class="carouselHeader">
+        <h2 class="carouselTitle">Momentos</h2>
+        <div class="hint">deslize pro lado →</div>
+      </div>
+
+      <div class="carousel" id="carousel">
+        <article class="slide">
+          <div class="img"><img src="imagens/foto1.jpg" alt="Primeira foto juntos"></div>
+          <div class="txt">
+            <h3 class="title">Primeira foto juntos</h3>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="img"><img src="imagens/foto2.jpg" alt="Alianças"></div>
+          <div class="txt">
+            <h3 class="title">Alianças</h3>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="img"><img src="imagens/foto3.jpg" alt="Primeiro encontro"></div>
+          <div class="txt">
+            <h3 class="title">Primeiro encontro</h3>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="img"><img src="imagens/foto4.jpg" alt="Dia da massinha"></div>
+          <div class="txt">
+            <h3 class="title">Dia da massinha</h3>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="img"><img src="imagens/foto5.jpg" alt="Dia do bolo"></div>
+          <div class="txt">
+            <h3 class="title">Dia do bolo</h3>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="img"><img src="imagens/foto6.jpg" alt="Caminho do vinho"></div>
+          <div class="txt">
+            <h3 class="title">Caminho do vinho</h3>
+          </div>
+        </article>
+      </div>
+
+      <div class="dots" id="dots" aria-hidden="true">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- CARTA DIGITANDO -->
+    <section class="letter" id="letter">
+      <div class="letterTop">
+        <div>
+          <div class="letterLabel">carta</div>
+          <h2 class="letterTitle pink">Pra minha princesa</h2>
+          <p class="letterSub">Eu escrevi isso pensando em você, com calma… do meu jeito.</p>
+          <div class="readyNote" id="readyNote">Desça até aqui… quando você chegar, eu começo a escrever. ✨</div>
+        </div>
+
+        <div class="letterBtns">
+          <button class="btn" id="btnToggle" disabled>Pausar</button>
+          <button class="btn ghost" id="btnRestart" disabled>Recomeçar</button>
+        </div>
+      </div>
+
+      <div class="paper">
+        <div class="type" id="type"></div>
+        <span class="caret" id="caret" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <footer>
+      <p class="love">Você é meu lar</p>
+      <div class="sign">— Thiago</div>
+    </footer>
+
+  </div>
+
+  <!-- MÚSICA (coloque ifoundher.mp3 em /musica) -->
+  <audio id="music" loop preload="auto">
+    <source src="musica/ifoundher.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicBtn">🔊 Tocar</button>
+
+  <script>
+    // >>> TROQUE A DATA AQUI se precisar (formato: YYYY-MM-DD)
+    const DATA_INICIO = "2025-12-25";
+
+    function diasJuntos(){
+      const start = new Date(DATA_INICIO + "T00:00:00");
+      const now = new Date();
+      const ms = now - start;
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+      return Math.max(0, days);
+    }
+
+    function atualizar(){
+      const d = diasJuntos();
+      const counter = document.getElementById("counter");
+      counter.textContent = `juntos há ${d} dia${d === 1 ? "" : "s"}`;
+    }
+
+    atualizar();
+    setInterval(atualizar, 60 * 1000);
+
+    // bolinhas seguindo o slide mais próximo
+    const carousel = document.getElementById("carousel");
+    const dots = Array.from(document.querySelectorAll("#dots .dot"));
+
+    function updateDots(){
+      const slides = Array.from(carousel.querySelectorAll(".slide"));
+      const left = carousel.scrollLeft;
+      let best = 0;
+      let bestDist = Infinity;
+
+      slides.forEach((s, i) => {
+        const dist = Math.abs(s.offsetLeft - left);
+        if(dist < bestDist){
+          bestDist = dist;
+          best = i;
+        }
+      });
+
+      dots.forEach((d, i) => d.classList.toggle("active", i === best));
+    }
+
+    carousel.addEventListener("scroll", () => {
+      window.requestAnimationFrame(updateDots);
+    }, { passive: true });
+
+    // ===== CARTA DIGITANDO (SÓ COMEÇA QUANDO APARECER) =====
+    const textoCarta =
+`Thayssa, desde o primeiro dia que eu vi você senti algo diferente, senti que você era diferente, e ao meus olhos você brilhava, seu sorriso, seu olhar, tudo. seu brilho era intenso que eu desejava alcançar!
+
+E foi assim que tudo começou...
+
+Meu mundo não tinha cores, era algo padrão, preto, branco, cinza, e bege, mas quando comecei a me apaixonar por você ele foi ganhando novas cores, vermelho do amor e da paixão, o azul do céu, o verde da grama e árvores, o amarelo do sol, e o rosa das flores lindas que você plantou nesse lindo jardim.
+
+Agora você estar dentro do meu coração, eu amo você com muita intensidade, lembro de cada momento nosso juntos, eu sempre vou te amar, todo dia meu amor cresce por você, e as coisas chatas que acontece fortalece isso, por que dificuldades existe para nos fazer mais fortes, vamos construir nosso castelo tijolo por tijolo, que o que temos ninguém pode separar, somos abençoados por Deus..`;
+
+    const elLetter = document.getElementById("letter");
+    const elType = document.getElementById("type");
+    const btnToggle = document.getElementById("btnToggle");
+    const btnRestart = document.getElementById("btnRestart");
+    const readyNote = document.getElementById("readyNote");
+
+    let i = 0;
+    let timer = null;
+    let pausado = false;
+    let started = false;
+
+    // velocidade base (ms)
+    const SPEED = 18;
+
+    function escrever(){
+      if(pausado) return;
+
+      elType.textContent = textoCarta.slice(0, i);
+      i++;
+
+      if(i <= textoCarta.length){
+        const last = textoCarta.charAt(i - 1);
+        let delay = SPEED;
+        if(last === "." || last === "!" || last === "?") delay = 140;
+        if(last === ",") delay = 55;
+        if(last === "\n") delay = 40;
+
+        timer = setTimeout(escrever, delay);
+      } else {
+        btnToggle.textContent = "Concluída";
+        btnToggle.disabled = true;
+      }
+    }
+
+    function iniciar(){
+      clearTimeout(timer);
+      i = 0;
+      pausado = false;
+      elType.textContent = "";
+      btnToggle.disabled = false;
+      btnRestart.disabled = false;
+      btnToggle.textContent = "Pausar";
+      readyNote.textContent = "💗";
+      escrever();
+    }
+
+    btnToggle.addEventListener("click", () => {
+      if(btnToggle.disabled) return;
+      pausado = !pausado;
+      btnToggle.textContent = pausado ? "Continuar" : "Pausar";
+      if(!pausado) escrever();
+    });
+
+    btnRestart.addEventListener("click", () => {
+      if(!started) return;
+      iniciar();
+    });
+
+    // ===== MÚSICA: começa quando a carta aparece + fade-in =====
+    const music = document.getElementById("music");
+    const musicBtn = document.getElementById("musicBtn");
+    const TARGET_VOL = 0.85;
+
+    let musicWanted = false;
+    let musicStarted = false;
+    let fading = null;
+
+    function fadeIn(){
+      clearInterval(fading);
+      music.volume = 0;
+      const steps = 22;
+      let c = 0;
+      fading = setInterval(() => {
+        c++;
+        music.volume = Math.min(TARGET_VOL, (TARGET_VOL * c) / steps);
+        if(c >= steps) clearInterval(fading);
+      }, 80);
+    }
+
+    async function tryPlayMusic(){
+      try{
+        await music.play();
+        musicStarted = true;
+        musicBtn.textContent = "⏸ Pausar";
+        fadeIn();
+        return true;
+      }catch(e){
+        return false;
+      }
+    }
+
+    function requestMusicStart(){
+      musicWanted = true;
+      musicBtn.style.display = "block";
+
+      tryPlayMusic().then(ok => {
+        if(ok) return;
+
+        const unlock = async () => {
+          if(!musicWanted) return;
+          const ok2 = await tryPlayMusic();
+          if(ok2){
+            document.removeEventListener("click", unlock);
+            document.removeEventListener("touchstart", unlock);
+          }
+        };
+        document.addEventListener("click", unlock);
+        document.addEventListener("touchstart", unlock, { passive: true });
+      });
+    }
+
+    musicBtn.addEventListener("click", async () => {
+      musicBtn.style.display = "block";
+      if(music.paused){
+        musicWanted = true;
+        const ok = await tryPlayMusic();
+        if(!ok){
+          musicBtn.textContent = "🔊 Tocar";
+        }
+      }else{
+        music.pause();
+        musicBtn.textContent = "🔊 Tocar";
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && !started){
+          started = true;
+          iniciar();
+          requestMusicStart();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    observer.observe(elLetter);
+  </script>
+</body>
+</html>
