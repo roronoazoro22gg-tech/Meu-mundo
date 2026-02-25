@@ -101,7 +101,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:12px; /* ✅ corrigido */
       border-bottom: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
     }
@@ -176,9 +176,6 @@
       font-size: 18px;
       font-weight:600;
       letter-spacing:.18px;
-      /* se quiser centralizar, descomenta:
-      text-align:center;
-      */
     }
 
     .dots{
@@ -372,42 +369,42 @@
 
       <div class="carousel" id="carousel">
         <article class="slide">
-          <div class="img"><img src="imagens/foto1.jpg" alt="Primeira foto juntos"></div>
+          <div class="img"><img src="foto1.jpg" alt="Primeira foto juntos"></div>
           <div class="txt">
             <h3 class="title">Primeira foto juntos</h3>
           </div>
         </article>
 
         <article class="slide">
-          <div class="img"><img src="imagens/foto2.jpg" alt="Alianças"></div>
+          <div class="img"><img src="foto2.jpg" alt="Alianças"></div>
           <div class="txt">
             <h3 class="title">Alianças</h3>
           </div>
         </article>
 
         <article class="slide">
-          <div class="img"><img src="imagens/foto3.jpg" alt="Primeiro encontro"></div>
+          <div class="img"><img src="foto3.jpg" alt="Primeiro encontro"></div>
           <div class="txt">
             <h3 class="title">Primeiro encontro</h3>
           </div>
         </article>
 
         <article class="slide">
-          <div class="img"><img src="imagens/foto4.jpg" alt="Dia da massinha"></div>
+          <div class="img"><img src="foto4.jpg" alt="Dia da massinha"></div>
           <div class="txt">
             <h3 class="title">Dia da massinha</h3>
           </div>
         </article>
 
         <article class="slide">
-          <div class="img"><img src="imagens/foto5.jpg" alt="Dia do bolo"></div>
+          <div class="img"><img src="foto5.jpg" alt="Dia do bolo"></div>
           <div class="txt">
             <h3 class="title">Dia do bolo</h3>
           </div>
         </article>
 
         <article class="slide">
-          <div class="img"><img src="imagens/foto6.jpg" alt="Caminho do vinho"></div>
+          <div class="img"><img src="foto6.jpg" alt="Caminho do vinho"></div>
           <div class="txt">
             <h3 class="title">Caminho do vinho</h3>
           </div>
@@ -453,9 +450,9 @@
 
   </div>
 
-  <!-- MÚSICA (coloque ifoundher.mp3 em /musica) -->
+  <!-- MÚSICA (ifoundher.mp3 na raiz do projeto) -->
   <audio id="music" loop preload="auto">
-    <source src="musica/ifoundher.mp3" type="audio/mpeg">
+    <source src="ifoundher.mp3" type="audio/mpeg">
   </audio>
 
   <button id="musicBtn">🔊 Tocar</button>
